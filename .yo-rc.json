@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "mrp",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.7.0",
+    "applicationType": "monolith",
+    "baseName": "mrp",
+    "packageName": "mrp",
+    "packageFolder": "mrp",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MDg4ZjQ2ZDI3ODg5ZjdhYThlZDk2OGMzZjNhN2YxNDNiNDA5MjA1YTFkYzFmMzgwZmQ2ZWQwMWFiZGI3YmEwMzFiYWUxYWM2OGYwNWRkODJiYjUxZTlmOWFmNmUyMTcxOTIxYzViMzcxMTI5YmZkMjg4NzYwYzAwNGIyYjU0MTQ=",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "ro"
+    ]
+  }
+}
