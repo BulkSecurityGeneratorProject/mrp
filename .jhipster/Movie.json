@@ -1,0 +1,27 @@
+{
+    "name": "Movie",
+    "fields": [
+        {
+            "fieldName": "movieName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "directorName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "year",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181117143650",
+    "entityTableName": "movie",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

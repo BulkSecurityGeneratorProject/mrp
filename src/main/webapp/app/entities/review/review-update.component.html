@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-review-heading" jhiTranslate="mrpApp.review.home.createOrEditLabel">Create or edit a Review</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!review.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="review.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="mrpApp.review.stars" for="field_stars">Stars</label>
+                    <input type="number" class="form-control" name="stars" id="field_stars"
+                        [(ngModel)]="review.stars" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="mrpApp.review.comment" for="field_comment">Comment</label>
+                    <input type="text" class="form-control" name="comment" id="field_comment"
+                        [(ngModel)]="review.comment" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="mrpApp.review.likes" for="field_likes">Likes</label>
+                    <input type="number" class="form-control" name="likes" id="field_likes"
+                        [(ngModel)]="review.likes" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="mrpApp.review.dislikes" for="field_dislikes">Dislikes</label>
+                    <input type="number" class="form-control" name="dislikes" id="field_dislikes"
+                        [(ngModel)]="review.dislikes" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="mrpApp.review.movie" for="field_movie">Movie</label>
+                    <select class="form-control" id="field_movie" name="movie" [(ngModel)]="review.movie" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="movieOption.id === review.movie?.id ? review.movie : movieOption" *ngFor="let movieOption of movies; trackBy: trackMovieById">{{movieOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="mrpApp.review.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" [(ngModel)]="review.user" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === review.user?.id ? review.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

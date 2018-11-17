@@ -1,0 +1,22 @@
+entity Movie {
+	movieName String,
+    directorName String,
+    year Long
+}
+
+entity Review {
+	stars Long,
+    comment String,
+    likes Long,
+    dislikes Long
+}
+
+relationship ManyToOne {
+	Review{movie} to Movie,
+    Review{user} to User
+}
+
+paginate Movie with infinite-scroll
+paginate Review with pagination
+
+service all with serviceImpl

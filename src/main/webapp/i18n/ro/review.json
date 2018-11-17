@@ -1,0 +1,26 @@
+{
+    "mrpApp": {
+        "review": {
+            "home": {
+                "title": "Reviews",
+                "createLabel": "Creeare o nouă entitate Review",
+                "createOrEditLabel": "Creeare sau editare Review"
+            },
+            "created": "A fost creată o nouă entitate Review cu identificatorul {{ param }}",
+            "updated": "Review cu identificatorul {{ param }} a fost actualizată",
+            "deleted": "Review cu identificatorul {{ param }} a fost ștearsă",
+            "delete": {
+                "question": "Sunteți sigur că doriți să ștergeți Review {{ id }}?"
+            },
+            "detail": {
+                "title": "Review"
+            },
+            "stars": "Stars",
+            "comment": "Comment",
+            "likes": "Likes",
+            "dislikes": "Dislikes",
+            "movie": "Movie",
+            "user": "User"
+        }
+    }
+}

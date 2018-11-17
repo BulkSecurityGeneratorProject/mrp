@@ -1,0 +1,23 @@
+{
+    "mrpApp": {
+        "movie": {
+            "home": {
+                "title": "Movies",
+                "createLabel": "Creeare o nouă entitate Movie",
+                "createOrEditLabel": "Creeare sau editare Movie"
+            },
+            "created": "A fost creată o nouă entitate Movie cu identificatorul {{ param }}",
+            "updated": "Movie cu identificatorul {{ param }} a fost actualizată",
+            "deleted": "Movie cu identificatorul {{ param }} a fost ștearsă",
+            "delete": {
+                "question": "Sunteți sigur că doriți să ștergeți Movie {{ id }}?"
+            },
+            "detail": {
+                "title": "Movie"
+            },
+            "movieName": "Movie Name",
+            "directorName": "Director Name",
+            "year": "Year"
+        }
+    }
+}

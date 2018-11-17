@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="review">
+            <h2><span jhiTranslate="mrpApp.review.detail.title">Review</span> {{review.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="mrpApp.review.stars">Stars</span></dt>
+                <dd>
+                    <span>{{review.stars}}</span>
+                </dd>
+                <dt><span jhiTranslate="mrpApp.review.comment">Comment</span></dt>
+                <dd>
+                    <span>{{review.comment}}</span>
+                </dd>
+                <dt><span jhiTranslate="mrpApp.review.likes">Likes</span></dt>
+                <dd>
+                    <span>{{review.likes}}</span>
+                </dd>
+                <dt><span jhiTranslate="mrpApp.review.dislikes">Dislikes</span></dt>
+                <dd>
+                    <span>{{review.dislikes}}</span>
+                </dd>
+                <dt><span jhiTranslate="mrpApp.review.movie">Movie</span></dt>
+                <dd>
+                    <div *ngIf="review.movie">
+                        <a [routerLink]="['/movie', review.movie?.id, 'view']">{{review.movie?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="mrpApp.review.user">User</span></dt>
+                <dd>
+                    {{review.user?.id}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/review', review.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
