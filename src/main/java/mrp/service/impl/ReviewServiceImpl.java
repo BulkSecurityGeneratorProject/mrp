@@ -1,11 +1,12 @@
 package mrp.service.impl;
 
-import mrp.service.ReviewService;
 import mrp.domain.Review;
+import mrp.domain.User;
 import mrp.repository.ReviewRepository;
+import mrp.service.ReviewService;
+import mrp.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -23,9 +24,11 @@ public class ReviewServiceImpl implements ReviewService {
     private final Logger log = LoggerFactory.getLogger(ReviewServiceImpl.class);
 
     private final ReviewRepository reviewRepository;
+    private final UserService userService;
 
-    public ReviewServiceImpl(ReviewRepository reviewRepository) {
+    public ReviewServiceImpl(ReviewRepository reviewRepository, UserService userService) {
         this.reviewRepository = reviewRepository;
+        this.userService = userService;
     }
 
     /**
@@ -36,6 +39,17 @@ public class ReviewServiceImpl implements ReviewService {
      */
     @Override
     public Review save(Review review) {
+        final Optional<User> isUser = userService.getUserWithAuthorities();
+        if (!isUser.isPresent()) {
+            log.error("User is not logged in");
+        }
+        final User user = isUser.get();
+        review.setUser(user);
+
+        if(review.getId()==null){
+            review.setDislikes(0L);
+            review.setLikes(0L);
+        }
         log.debug("Request to save Review : {}", review);
         return reviewRepository.save(review);
     }
@@ -51,6 +65,13 @@ public class ReviewServiceImpl implements ReviewService {
     public Page<Review> findAll(Pageable pageable) {
         log.debug("Request to get all Reviews");
         return reviewRepository.findAll(pageable);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Review> findAllByMovie(Pageable pageable, Long id) {
+        log.debug("Request to get all Reviews");
+        return reviewRepository.findAllByMovieId(pageable, id);
     }
 
 

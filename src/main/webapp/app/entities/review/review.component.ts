@@ -1,57 +1,55 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager, JhiParseLinks } from 'ng-jhipster';
 
 import { IReview } from 'app/shared/model/review.model';
 import { Principal } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { ReviewService } from './review.service';
+import { IMovie } from 'app/shared/model/movie.model';
 
 @Component({
     selector: 'jhi-review',
     templateUrl: './review.component.html'
 })
 export class ReviewComponent implements OnInit, OnDestroy {
-    currentAccount: any;
     reviews: IReview[];
-    error: any;
-    success: any;
+    currentAccount: any;
     eventSubscriber: Subscription;
-    routeData: any;
+    itemsPerPage: number;
     links: any;
-    totalItems: any;
-    queryCount: any;
-    itemsPerPage: any;
     page: any;
     predicate: any;
-    previousPage: any;
+    queryCount: any;
     reverse: any;
+    totalItems: number;
+
+    @Input()
+    movie: IMovie;
 
     constructor(
         private reviewService: ReviewService,
-        private parseLinks: JhiParseLinks,
         private jhiAlertService: JhiAlertService,
-        private principal: Principal,
-        private activatedRoute: ActivatedRoute,
-        private router: Router,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private parseLinks: JhiParseLinks,
+        private principal: Principal
     ) {
+        this.reviews = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
-        this.routeData = this.activatedRoute.data.subscribe(data => {
-            this.page = data.pagingParams.page;
-            this.previousPage = data.pagingParams.page;
-            this.reverse = data.pagingParams.ascending;
-            this.predicate = data.pagingParams.predicate;
-        });
+        this.page = 0;
+        this.links = {
+            last: 0
+        };
+        this.predicate = 'id';
+        this.reverse = true;
     }
 
     loadAll() {
         this.reviewService
-            .query({
-                page: this.page - 1,
+            .queryByMovie(this.movie.id, {
+                page: this.page,
                 size: this.itemsPerPage,
                 sort: this.sort()
             })
@@ -61,33 +59,14 @@ export class ReviewComponent implements OnInit, OnDestroy {
             );
     }
 
-    loadPage(page: number) {
-        if (page !== this.previousPage) {
-            this.previousPage = page;
-            this.transition();
-        }
-    }
-
-    transition() {
-        this.router.navigate(['/review'], {
-            queryParams: {
-                page: this.page,
-                size: this.itemsPerPage,
-                sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-            }
-        });
+    reset() {
+        this.page = 0;
+        this.reviews = [];
         this.loadAll();
     }
 
-    clear() {
-        this.page = 0;
-        this.router.navigate([
-            '/review',
-            {
-                page: this.page,
-                sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-            }
-        ]);
+    loadPage(page) {
+        this.page = page;
         this.loadAll();
     }
 
@@ -108,7 +87,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
     }
 
     registerChangeInReviews() {
-        this.eventSubscriber = this.eventManager.subscribe('reviewListModification', response => this.loadAll());
+        this.eventSubscriber = this.eventManager.subscribe('reviewListModification', response => this.reset());
     }
 
     sort() {
@@ -122,8 +101,9 @@ export class ReviewComponent implements OnInit, OnDestroy {
     private paginateReviews(data: IReview[], headers: HttpHeaders) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-        this.queryCount = this.totalItems;
-        this.reviews = data;
+        for (let i = 0; i < data.length; i++) {
+            this.reviews.push(data[i]);
+        }
     }
 
     private onError(errorMessage: string) {

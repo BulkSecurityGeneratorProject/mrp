@@ -10,8 +10,9 @@
                 "bankAccount": "ContBancar",
                 "label": "Etichetă",
                 "operation": "Operație",
-                "movie": "Movie",
+                "movies": "Filme",
                 "review": "Review",
+                "movie": "Movie",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -60,7 +61,7 @@
             "info": {
                 "authenticated": {
                     "prefix": "Dacă doriți să vă ",
-                    "link": "autentificați",
+                    "link": "Autentificați-va",
                     "suffix": ", puteți încerca conturile implicite:<br/>- Administrator (login=\"admin\" și parola=\"admin\") <br/>- Utilizator (login=\"user\" și parola=\"user\")."
                 },
                 "register": {

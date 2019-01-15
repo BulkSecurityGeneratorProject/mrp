@@ -19,6 +19,7 @@ const ENTITY_STATES = [...reviewRoute, ...reviewPopupRoute];
     imports: [MrpSharedModule, MrpAdminModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [ReviewComponent, ReviewDetailComponent, ReviewUpdateComponent, ReviewDeleteDialogComponent, ReviewDeletePopupComponent],
     entryComponents: [ReviewComponent, ReviewUpdateComponent, ReviewDeleteDialogComponent, ReviewDeletePopupComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    exports: [ReviewComponent, ReviewUpdateComponent, ReviewDetailComponent]
 })
 export class MrpReviewModule {}

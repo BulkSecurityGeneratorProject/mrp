@@ -28,6 +28,8 @@ public interface ReviewService {
      */
     Page<Review> findAll(Pageable pageable);
 
+    Page<Review> findAllByMovie(Pageable pageable, Long id);
+
 
     /**
      * Get the "id" review.

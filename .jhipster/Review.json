@@ -35,7 +35,7 @@
     "changelogDate": "20181117143651",
     "entityTableName": "review",
     "dto": "no",
-    "pagination": "pagination",
+    "pagination": "infinite-scroll",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

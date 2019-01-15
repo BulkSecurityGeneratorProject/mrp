@@ -7,8 +7,9 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
-                "movie": "Movie",
+                "movies": "Movies",
                 "review": "Review",
+                "movie": "Movie",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -51,7 +52,7 @@
             "info": {
                 "authenticated": {
                     "prefix": "If you want to ",
-                    "link": "sign in",
+                    "link": "Sign in",
                     "suffix": ", you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\")."
                 },
                 "register": {

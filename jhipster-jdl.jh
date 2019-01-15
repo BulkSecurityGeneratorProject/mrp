@@ -16,7 +16,7 @@ relationship ManyToOne {
     Review{user} to User
 }
 
-paginate Movie with infinite-scroll
-paginate Review with pagination
+paginate Movie with pagination
+paginate Review with infinite-scroll
 
 service all with serviceImpl

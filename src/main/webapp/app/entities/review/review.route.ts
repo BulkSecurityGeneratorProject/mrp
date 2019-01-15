@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, Routes } from '@angular/router';
 import { UserRouteAccessService } from 'app/core';
 import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { Review } from 'app/shared/model/review.model';
+import { IReview, Review } from 'app/shared/model/review.model';
 import { ReviewService } from './review.service';
 import { ReviewComponent } from './review.component';
 import { ReviewDetailComponent } from './review-detail.component';
 import { ReviewUpdateComponent } from './review-update.component';
 import { ReviewDeletePopupComponent } from './review-delete-dialog.component';
-import { IReview } from 'app/shared/model/review.model';
+import { Movie } from 'app/shared/model/movie.model';
 
 @Injectable({ providedIn: 'root' })
 export class ReviewResolve implements Resolve<IReview> {
@@ -19,13 +18,17 @@ export class ReviewResolve implements Resolve<IReview> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Review> {
         const id = route.params['id'] ? route.params['id'] : null;
+        const movieId = route.params['movieid'] ? route.params['movieid'] : null;
         if (id) {
             return this.service.find(id).pipe(
                 filter((response: HttpResponse<Review>) => response.ok),
                 map((review: HttpResponse<Review>) => review.body)
             );
         }
-        return of(new Review());
+        const myReview = new Review();
+        myReview.movie = new Movie();
+        myReview.movie.id = movieId;
+        return of(myReview);
     }
 }
 
@@ -33,12 +36,8 @@ export const reviewRoute: Routes = [
     {
         path: 'review',
         component: ReviewComponent,
-        resolve: {
-            pagingParams: JhiResolvePagingParams
-        },
         data: {
             authorities: ['ROLE_USER'],
-            defaultSort: 'id,asc',
             pageTitle: 'mrpApp.review.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -56,7 +55,7 @@ export const reviewRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'review/new',
+        path: 'review/new/:movieid',
         component: ReviewUpdateComponent,
         resolve: {
             review: ReviewResolve
