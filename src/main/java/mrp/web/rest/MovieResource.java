@@ -1,24 +1,23 @@
 package mrp.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import io.github.jhipster.web.util.ResponseUtil;
 import mrp.domain.Movie;
+import mrp.domain.MovieListView;
 import mrp.service.MovieService;
 import mrp.web.rest.errors.BadRequestAlertException;
 import mrp.web.rest.util.HeaderUtil;
 import mrp.web.rest.util.PaginationUtil;
-import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -89,9 +88,9 @@ public class MovieResource {
      */
     @GetMapping("/movies")
     @Timed
-    public ResponseEntity<List<Movie>> getAllMovies(Pageable pageable) {
+    public ResponseEntity<List<MovieListView>> getAllMovies(Pageable pageable) {
         log.debug("REST request to get a page of Movies");
-        Page<Movie> page = movieService.findAll(pageable);
+        Page<MovieListView> page = movieService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/movies");
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

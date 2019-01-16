@@ -24,6 +24,12 @@
                 <th jhiSortBy="year"><span jhiTranslate="mrpApp.movie.year">Year</span>
                     <fa-icon [icon]="'sort'"></fa-icon>
                 </th>
+                <th jhiSortBy="numberOfReviews"><span jhiTranslate="mrpApp.movie.numberOfReviews">Number of Reviews</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="rating"><span jhiTranslate="mrpApp.movie.rating">Rating</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
                 <th></th>
             </tr>
             </thead>
@@ -32,6 +38,8 @@
                 <td>{{movie.movieName}}</td>
                 <td>{{movie.directorName}}</td>
                 <td>{{movie.year}}</td>
+                <td>{{movie.numberOfReviews}}</td>
+                <td>{{movie.rating}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

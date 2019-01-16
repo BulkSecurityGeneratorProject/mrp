@@ -6,8 +6,7 @@
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="mrpApp.review.stars" for="field_stars">Stars</label>
-                    <input type="number" class="form-control" name="stars" id="field_stars"
-                           [(ngModel)]="review.stars"/>
+                    <p-rating [(ngModel)]="review.stars" [cancel]="false" class="form-control" name="stars" id="field_stars"></p-rating>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="mrpApp.review.comment"

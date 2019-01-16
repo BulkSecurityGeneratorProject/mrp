@@ -109,4 +109,8 @@ export class ReviewComponent implements OnInit, OnDestroy {
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
+
+    private currentAccountHasReview(): boolean {
+        return this.reviews.filter(review => review.user.id === this.currentAccount.id).length > 0;
+    }
 }

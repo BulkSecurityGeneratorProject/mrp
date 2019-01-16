@@ -17,6 +17,8 @@
             },
             "movieName": "Movie Name",
             "directorName": "Director Name",
+            "rating": "Rating",
+            "numberOfReviews": "Number of reviews",
             "year": "Year"
         }
     }

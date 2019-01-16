@@ -1,7 +1,7 @@
 package mrp.service;
 
 import mrp.domain.Movie;
-
+import mrp.domain.MovieListView;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -26,7 +26,7 @@ public interface MovieService {
      * @param pageable the pagination information
      * @return the list of entities
      */
-    Page<Movie> findAll(Pageable pageable);
+    Page<MovieListView> findAll(Pageable pageable);
 
 
     /**

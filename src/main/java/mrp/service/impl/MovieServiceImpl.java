@@ -1,11 +1,13 @@
 package mrp.service.impl;
 
-import mrp.service.MovieService;
 import mrp.domain.Movie;
+import mrp.domain.MovieListView;
+import mrp.repository.MovieListViewRepository;
 import mrp.repository.MovieRepository;
+import mrp.repository.ReviewRepository;
+import mrp.service.MovieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -23,9 +25,11 @@ public class MovieServiceImpl implements MovieService {
     private final Logger log = LoggerFactory.getLogger(MovieServiceImpl.class);
 
     private final MovieRepository movieRepository;
+    private final MovieListViewRepository movieListViewRepository;
 
-    public MovieServiceImpl(MovieRepository movieRepository) {
+    public MovieServiceImpl(MovieRepository movieRepository, MovieListViewRepository movieListViewRepository) {
         this.movieRepository = movieRepository;
+        this.movieListViewRepository = movieListViewRepository;
     }
 
     /**
@@ -48,9 +52,9 @@ public class MovieServiceImpl implements MovieService {
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<Movie> findAll(Pageable pageable) {
+    public Page<MovieListView> findAll(Pageable pageable) {
         log.debug("Request to get all Movies");
-        return movieRepository.findAll(pageable);
+        return movieListViewRepository.findAll(pageable);
     }
 
 

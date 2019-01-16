@@ -1,7 +1,9 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="mrpApp.review.home.title">Reviews</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-review" [routerLink]="['/review/new', movie.id]">
+        <button id="jh-create-entity"
+                *ngIf="!currentAccountHasReview()"
+                class="btn btn-primary float-right jh-create-entity create-review" [routerLink]="['/review/new', movie.id]">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="mrpApp.review.home.createLabel">
             Create new Review

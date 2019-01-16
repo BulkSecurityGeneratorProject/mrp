@@ -12,11 +12,12 @@ import {
     reviewRoute,
     reviewPopupRoute
 } from './';
+import { RatingModule } from 'primeng/rating';
 
 const ENTITY_STATES = [...reviewRoute, ...reviewPopupRoute];
 
 @NgModule({
-    imports: [MrpSharedModule, MrpAdminModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [MrpSharedModule, MrpAdminModule, RouterModule.forChild(ENTITY_STATES), RatingModule],
     declarations: [ReviewComponent, ReviewDetailComponent, ReviewUpdateComponent, ReviewDeleteDialogComponent, ReviewDeletePopupComponent],
     entryComponents: [ReviewComponent, ReviewUpdateComponent, ReviewDeleteDialogComponent, ReviewDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
