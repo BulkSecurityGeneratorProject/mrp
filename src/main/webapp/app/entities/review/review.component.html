@@ -3,9 +3,10 @@
         <span jhiTranslate="mrpApp.review.home.title">Reviews</span>
         <button id="jh-create-entity"
                 *ngIf="!currentAccountHasReview()"
-                class="btn btn-primary float-right jh-create-entity create-review" [routerLink]="['/review/new', movie.id]">
+                class="btn btn-primary float-right jh-create-entity create-review"
+                [routerLink]="['/review/new', movie.id]">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="mrpApp.review.home.createLabel">
+            <span jhiTranslate="mrpApp.review.home.createLabel">
             Create new Review
             </span>
         </button>
@@ -16,35 +17,25 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="stars"><span jhiTranslate="mrpApp.review.stars">Stars</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="comment"><span jhiTranslate="mrpApp.review.comment">Comment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="likes"><span jhiTranslate="mrpApp.review.likes">Likes</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="dislikes"><span jhiTranslate="mrpApp.review.dislikes">Dislikes</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="user.firstName"><span jhiTranslate="mrpApp.review.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
+                <th jhiSortBy="user.firstName" style="width:25%"><span jhiTranslate="mrpApp.review.user">User</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="comment" style="width:60%"><span jhiTranslate="mrpApp.review.comment">Comment</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="stars" style="width:15%"><span jhiTranslate="mrpApp.review.stars">Stars</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
             </tr>
             </thead>
-            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']"
+                   [infiniteScrollDistance]="0">
             <tr *ngFor="let review of reviews ;trackBy: trackId">
-                <td>{{review.stars}}</td>
-                <td>{{review.comment}}</td>
-                <td>{{review.likes}}</td>
-                <td>{{review.dislikes}}</td>
                 <td>
                     {{review.user?.login}}
                 </td>
-                <!--<td class="text-right">-->
-                    <!--<div class="btn-group flex-btn-group-container">-->
-                        <!--<button type="submit"-->
-                                <!--[routerLink]="['/', { outlets: { popup: 'review/'+ review.id + '/delete'} }]"-->
-                                <!--replaceUrl="true"-->
-                                <!--queryParamsHandling="merge"-->
-                                <!--class="btn btn-danger btn-sm">-->
-                            <!--<fa-icon [icon]="'times'"></fa-icon>-->
-                            <!--<span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>-->
-                        <!--</button>-->
-                    <!--</div>-->
-                <!--</td>-->
+                <td>{{review.comment}}</td>
+                <td>{{review.stars}}</td>
             </tr>
             </tbody>
         </table>
